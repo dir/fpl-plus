@@ -3,15 +3,15 @@ import "~/styles/globals.css";
 import { Inter } from "next/font/google";
 
 import { cn } from "~/lib/utils";
-import { Header } from "~/components/layout/header";
+import Header from "~/components/layout/header";
 import Providers from "~/app/providers";
 
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | Luke FPL",
-    default: "Luke FPL",
+    template: "%s | FPL⁺",
+    default: "FPL⁺",
   },
 };
 
@@ -29,10 +29,10 @@ export default function RootLayout({
       className={cn("antialiased", inter.className)}
       suppressHydrationWarning
     >
-      <body>
+      <body className="flex flex-col gap-y-10">
         <Providers>
           <Header />
-          {children}
+          <main className="px-56">{children}</main>
         </Providers>
       </body>
     </html>
