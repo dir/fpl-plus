@@ -22,11 +22,11 @@ export const standingsColumns: ColumnDef<StandingWithEntry>[] = [
       } as const;
 
       return placed ? (
-        <div className="inline-flex items-center text-xl font-black">
+        <div className="select-none items-center text-xl font-black">
           <Glow color={placedVariants[rank]}>{rank}</Glow>
         </div>
       ) : (
-        <div className="text-xl font-bold">{rank}</div>
+        <div className="select-none text-xl font-bold">{rank}</div>
       );
     },
   },
