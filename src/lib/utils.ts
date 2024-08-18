@@ -1,8 +1,5 @@
-import { isServer } from "@tanstack/react-query";
 import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
-
-import { env } from "~/env";
 
 import type { ClassValue } from "clsx";
 
@@ -10,5 +7,8 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export const getProxiedUrl = (requestUrl: string) =>
-  isServer ? requestUrl : `${env.NEXT_PUBLIC_CORS_PROXY}${requestUrl}`;
+export const getBaseUrl = () => {
+  if (typeof window !== "undefined") return window.location.origin;
+  if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
+  return `http://localhost:${process.env.PORT ?? 3000}`;
+};
