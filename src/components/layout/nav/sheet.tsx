@@ -4,6 +4,7 @@ import { MenuIcon } from "lucide-react";
 import { useMemo, useState } from "react";
 import { usePathname } from "next/navigation";
 
+import { cn } from "~/lib/utils";
 import { Button } from "~/components/ui/button";
 import {
   Sheet,
@@ -13,7 +14,7 @@ import {
 } from "~/components/ui/sheet";
 import { Logo } from "~/components/layout/header";
 
-export default function SheetNavMenu() {
+export default function SheetNavMenu({ className }: { className?: string }) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
@@ -25,8 +26,8 @@ export default function SheetNavMenu() {
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
-      <SheetTrigger>
-        <Button className="shrink-0 lg:hidden" variant="outline" size="icon">
+      <SheetTrigger className={cn(className)}>
+        <Button className="shrink-0" variant="outline" size="icon">
           <MenuIcon className="size-5" />
           <span className="sr-only">Toggle navigation menu</span>
         </Button>

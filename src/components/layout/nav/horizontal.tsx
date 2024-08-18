@@ -1,6 +1,7 @@
 import * as React from "react";
 import Link from "next/link";
 
+import { cn } from "~/lib/utils";
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -9,9 +10,13 @@ import {
   navigationMenuTriggerStyle,
 } from "~/components/ui/navigation-menu";
 
-export default function HorizontalNavMenu() {
+export default function HorizontalNavMenu({
+  className,
+}: {
+  className?: string;
+}) {
   return (
-    <NavigationMenu>
+    <NavigationMenu className={cn(className)}>
       <NavigationMenuList className="gap-x-3">
         <NavigationMenuItem>
           <Link href="/docs" legacyBehavior passHref>

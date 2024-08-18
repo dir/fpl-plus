@@ -1,4 +1,4 @@
-import { ThemeProvider } from "~/styles/theme-provider";
+import ThemeProvider from "~/styles/theme-provider";
 
 export default function Providers({
   children,

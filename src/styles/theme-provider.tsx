@@ -13,7 +13,10 @@ import type { ThemeProviderProps } from "next-themes/dist/types";
  * @see https://ui.shadcn.com/docs/dark-mode/next
  * @see https://github.com/pacocoursey/next-themes
  */
-export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
+export default function ThemeProvider({
+  children,
+  ...props
+}: ThemeProviderProps) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {

@@ -29,10 +29,12 @@ export default function RootLayout({
       className={cn("antialiased", inter.className)}
       suppressHydrationWarning
     >
-      <body className="flex flex-col gap-y-10">
+      <body>
         <Providers>
           <Header />
-          <main className="px-56">{children}</main>
+          <main className="mx-auto w-full max-w-screen-2xl px-4 md:px-6">
+            {children}
+          </main>
         </Providers>
       </body>
     </html>
