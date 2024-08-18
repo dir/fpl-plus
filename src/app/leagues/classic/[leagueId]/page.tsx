@@ -7,6 +7,26 @@ import { notFound } from "next/navigation";
 import { getQueryClient } from "~/lib/rq/server";
 import StandingsTable from "~/app/leagues/classic/[leagueId]/components/table/table";
 
+export async function generateMetadata({
+  params,
+}: {
+  params: {
+    leagueId: string;
+  };
+}) {
+  const leagueId = Number(params.leagueId);
+
+  const queryClient = getQueryClient();
+
+  const { league } = await queryClient.fetchQuery(
+    getLeagueByIdOptions(leagueId),
+  );
+
+  return {
+    title: league.name,
+  };
+}
+
 export default async function LeaguePage({
   params,
 }: {
@@ -36,12 +56,11 @@ export default async function LeaguePage({
 
   return (
     <div className="flex flex-col gap-y-6">
-      <div>
-        <div className="flex flex-row items-center">
-          <TrophyIcon className="mr-2 size-7 shrink-0" strokeWidth={2.5} />
-          <h1 className="text-4xl font-bold">{league.name}</h1>
-        </div>
+      <div className="flex flex-row items-center">
+        <TrophyIcon className="mr-2 size-7 shrink-0" strokeWidth={2.5} />
+        <h1 className="text-4xl font-bold">{league.name}</h1>
       </div>
+
       <HydrationBoundary state={dehydrate(queryClient)}>
         <StandingsTable leagueId={leagueId} />
       </HydrationBoundary>
