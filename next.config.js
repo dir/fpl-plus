@@ -9,6 +9,7 @@ const nextConfig = {
 
   // needed to make the FPL API rewrite work
   skipTrailingSlashRedirect: true,
+  trailingSlash: true,
 
   /**
    * Proxy requests to the FPL API.
