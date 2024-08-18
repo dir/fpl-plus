@@ -61,7 +61,7 @@ export default async function LeaguePage({
           <TrophyIcon className="mr-2 size-7 shrink-0" strokeWidth={2.5} />
           <h1 className="text-4xl font-bold">{league.name}</h1>
         </div>
-        <div className="inline-flex items-center rounded-lg border px-2 py-1">
+        <div className="inline-flex select-none items-center rounded-lg border px-2 py-1">
           <span className="mr-1 animate-pulse pb-px text-lg leading-none text-emerald-500">
             •
           </span>

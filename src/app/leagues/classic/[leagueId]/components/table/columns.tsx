@@ -9,7 +9,7 @@ import Glow from "~/components/glow";
 export const standingsColumns: ColumnDef<StandingWithEntry>[] = [
   {
     accessorKey: "rank",
-    header: () => <span className="text-center">Rank</span>,
+    header: () => "Rank",
     cell: ({ row }) => {
       const rank = row.original.standing.rank;
       // have to explicitly check each one so TypeScript can narrow the type of rank
@@ -22,16 +22,11 @@ export const standingsColumns: ColumnDef<StandingWithEntry>[] = [
       } as const;
 
       return placed ? (
-        <div className="select-none items-center text-center text-xl font-black">
-          <Glow
-            className="justify-center text-center"
-            color={placedVariants[rank]}
-          >
-            {rank}
-          </Glow>
+        <div className="select-none items-center text-xl font-black">
+          <Glow color={placedVariants[rank]}>{rank}</Glow>
         </div>
       ) : (
-        <div className="select-none text-center text-xl font-bold">{rank}</div>
+        <div className="select-none text-xl font-bold">{rank}</div>
       );
     },
   },
