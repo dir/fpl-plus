@@ -24,6 +24,9 @@ export default function SheetNavMenu({ className }: { className?: string }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
+  // no links yet
+  return null;
+
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild className={cn(className)}>
