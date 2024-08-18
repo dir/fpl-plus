@@ -1,7 +1,7 @@
+/*
 import { EventResponse } from "~/apis/fpl/types/event.types";
 import { Pick } from "~/apis/fpl/types/picks.types";
 
-/*
 export const getLatestPointsForEvent = ({
   event,
   picks,
