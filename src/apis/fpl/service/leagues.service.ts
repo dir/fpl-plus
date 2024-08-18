@@ -10,11 +10,4 @@ export const fetchLeagueStandingsById = (id: number) => async () =>
     next: {
       revalidate: 60,
     },
-  }).then((res) => {
-    console.debug(
-      "BASE URL:",
-      `${getBaseUrl()}/fpl/leagues-classic/${id}/standings`,
-    );
-    console.debug(res);
-    return res.json() as Promise<LeagueStandingsResponse>;
-  });
+  }).then((res) => res.json() as Promise<LeagueStandingsResponse>);
