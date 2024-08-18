@@ -26,7 +26,7 @@ export default function SheetNavMenu({ className }: { className?: string }) {
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
-      <SheetTrigger className={cn(className)}>
+      <SheetTrigger asChild className={cn(className)}>
         <Button className="shrink-0" variant="outline" size="icon">
           <MenuIcon className="size-5" />
           <span className="sr-only">Toggle navigation menu</span>
