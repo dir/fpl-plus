@@ -3,7 +3,7 @@ import { EntryResponse } from "~/apis/fpl/types/entry.types";
 import { getBaseUrl } from "~/lib/utils";
 
 export const fetchEntryById = (id: number) => async () =>
-  await fetch(`${getBaseUrl()}/fpl-api/entry/${id}`, {
+  await fetch(`${getBaseUrl()}/fpl/entry/${id}`, {
     headers: {
       "Content-Type": "application/json",
     },
