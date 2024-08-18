@@ -3,13 +3,7 @@
 import { SearchXIcon } from "lucide-react";
 import { useParams } from "next/navigation";
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "~/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 
 export default function LeagueNotFound() {
   const params = useParams();

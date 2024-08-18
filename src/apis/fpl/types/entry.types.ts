@@ -69,7 +69,7 @@ export type ActivePhase = {
 };
 
 export type Cup = {
-  matches: any[];
+  matches: unknown[];
   status: Status;
   cup_league: null;
 };

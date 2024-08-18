@@ -27,7 +27,7 @@ export default async function LeaguePage({
   );
 
   entryOptions.forEach((option) => {
-    queryClient.prefetchQuery(option);
+    void queryClient.prefetchQuery(option);
   });
 
   if (!league) {
