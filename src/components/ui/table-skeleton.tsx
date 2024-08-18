@@ -83,11 +83,8 @@ export function TableSkeleton(props: DataTableSkeletonProps) {
   } = props;
 
   return (
-    <div
-      className={cn("w-full space-y-2.5 overflow-hidden", className)}
-      {...skeletonProps}
-    >
-      <div className="flex w-full items-center justify-between space-x-2 overflow-hidden p-1">
+    <div className={cn("w-full overflow-hidden", className)} {...skeletonProps}>
+      <div className="flex w-full items-center justify-between space-x-2 overflow-hidden">
         <div className="flex flex-1 items-center space-x-2">
           {searchableColumnCount > 0
             ? Array.from({ length: searchableColumnCount }).map((_, i) => (

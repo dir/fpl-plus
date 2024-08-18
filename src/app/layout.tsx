@@ -3,6 +3,7 @@ import "~/styles/globals.css";
 import { Inter } from "next/font/google";
 
 import { cn } from "~/lib/utils";
+import Footer from "~/components/layout/footer";
 import Header from "~/components/layout/header";
 import Providers from "~/app/providers";
 
@@ -29,12 +30,13 @@ export default function RootLayout({
       className={cn("antialiased", inter.className)}
       suppressHydrationWarning
     >
-      <body>
+      <body className="flex min-h-dvh flex-col">
         <Providers>
           <Header />
           <main className="mx-auto w-full max-w-screen-2xl px-4 py-8 md:px-6">
             {children}
           </main>
+          <Footer />
         </Providers>
       </body>
     </html>
