@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <footer className="mt-auto pb-6 text-center shadow-sm">
-      <p className="text-sm text-gray-600 dark:text-gray-300">
+      <p className="text-sm text-muted-foreground">
         &copy; {new Date().getFullYear()}{" "}
         <Link
           href="https://luke.onl"

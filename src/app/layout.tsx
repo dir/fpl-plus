@@ -30,10 +30,10 @@ export default function RootLayout({
       className={cn("antialiased", inter.className)}
       suppressHydrationWarning
     >
-      <body className="flex min-h-dvh flex-col">
+      <body className="flex min-h-dvh flex-col bg-background">
         <Providers>
           <Header />
-          <main className="mx-auto w-full max-w-screen-2xl px-4 py-8 md:px-6">
+          <main className="mx-auto w-full max-w-screen-2xl bg-background px-4 py-8 md:px-6">
             {children}
           </main>
           <Footer />
