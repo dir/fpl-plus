@@ -26,6 +26,8 @@ module.exports = {
     "<TYPES>^[.]", // Our types
     "^types$",
     "^~/types/(.*)$",
+    "",
+    "",
   ],
   importOrderParserPlugins: ["typescript", "jsx"],
   plugins: [
