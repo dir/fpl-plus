@@ -2,6 +2,7 @@
 
 import { useSuspenseQueries, useSuspenseQuery } from "@tanstack/react-query";
 import { getEntryByIdOptions } from "~/apis/fpl/queries/entries";
+import { getEntryEventPicksByEntryIdOptions } from "~/apis/fpl/queries/event";
 import { getLeagueByIdOptions } from "~/apis/fpl/queries/leagues";
 
 import { DataTable } from "~/components/data-table/data-table";
@@ -18,15 +19,26 @@ export default function StandingsTable({ leagueId }: { leagueId: number }) {
     ),
   });
 
-  const entries = entryQueries.map((query) => query.data);
-
-  const standingsWithEntries = standings.results.map((standing) => {
-    const matchingEntry = entries.find((entry) => entry.id === standing.entry);
-    return {
-      entry: matchingEntry!,
-      standing: standing,
-    };
+  const picksQueries = useSuspenseQueries({
+    queries: standings.results.map((standing) =>
+      getEntryEventPicksByEntryIdOptions(standing.entry, 1),
+    ),
   });
 
-  return <DataTable columns={standingsColumns} data={standingsWithEntries} />;
+  const standingsWithEntriesAndPicks = standings.results.map(
+    (standing, index) => {
+      const entryQuery = entryQueries[index];
+      const picksQuery = picksQueries[index];
+
+      return {
+        standing,
+        entry: entryQuery?.data,
+        picks: picksQuery?.data,
+      };
+    },
+  );
+
+  return (
+    <DataTable columns={standingsColumns} data={standingsWithEntriesAndPicks} />
+  );
 }

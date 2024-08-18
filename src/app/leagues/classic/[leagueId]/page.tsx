@@ -1,5 +1,6 @@
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import { getEntryByIdOptions } from "~/apis/fpl/queries/entries";
+import { getEntryEventPicksByEntryIdOptions } from "~/apis/fpl/queries/event";
 import { getLeagueByIdOptions } from "~/apis/fpl/queries/leagues";
 import { TrophyIcon } from "lucide-react";
 import { notFound } from "next/navigation";
@@ -42,12 +43,20 @@ export default async function LeaguePage({
     getLeagueByIdOptions(leagueId),
   );
 
-  const entryOptions = standings.results.map((standing) =>
+  const entryQueryOptions = standings.results.flatMap((standing) => [
     getEntryByIdOptions(standing.entry),
-  );
+  ]);
 
-  entryOptions.forEach((option) => {
-    void queryClient.prefetchQuery(option);
+  const entryPickQueryOptions = standings.results.flatMap((standing) => [
+    getEntryEventPicksByEntryIdOptions(standing.entry, 1),
+  ]);
+
+  entryQueryOptions.forEach((queryOption) => {
+    void queryClient.prefetchQuery(queryOption);
+  });
+
+  entryPickQueryOptions.forEach((queryOption) => {
+    void queryClient.prefetchQuery(queryOption);
   });
 
   if (!league) {

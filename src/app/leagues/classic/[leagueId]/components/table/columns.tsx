@@ -1,12 +1,12 @@
 "use client";
 
 import { ColumnDef } from "@tanstack/react-table";
-import { StandingWithEntry } from "~/apis/fpl/types/league.types";
+import { StandingWithEntryAndPicks } from "~/apis/fpl/types/league.types";
 import ReactCountryFlag from "react-country-flag";
 
 import Glow from "~/components/glow";
 
-export const standingsColumns: ColumnDef<StandingWithEntry>[] = [
+export const standingsColumns: ColumnDef<StandingWithEntryAndPicks>[] = [
   {
     accessorKey: "rank",
     header: () => "Rank",
@@ -39,9 +39,9 @@ export const standingsColumns: ColumnDef<StandingWithEntry>[] = [
       const placed = rank === 1 || rank === 2 || rank === 3;
 
       const countryCodeIsoShort =
-        row.original.entry.player_region_iso_code_short === "EN"
+        row.original.entry?.player_region_iso_code_short === "EN"
           ? "GB"
-          : row.original.entry.player_region_iso_code_short;
+          : row.original.entry?.player_region_iso_code_short;
 
       const placedVariants = {
         1: "gold",
@@ -63,7 +63,7 @@ export const standingsColumns: ColumnDef<StandingWithEntry>[] = [
 
           <div className="inline-flex items-center whitespace-nowrap">
             <ReactCountryFlag
-              countryCode={countryCodeIsoShort}
+              countryCode={countryCodeIsoShort ?? "GB"}
               svg
               style={{
                 width: "1rem",

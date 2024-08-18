@@ -3,6 +3,7 @@
  */
 
 import { EntryResponse } from "~/apis/fpl/types/entry.types";
+import { EntryPicksResponse } from "~/apis/fpl/types/picks.types";
 
 export type LeagueStandingsResponse = {
   new_entries: NewEntries;
@@ -52,7 +53,8 @@ export type LeagueEntry = {
   entry_name: string;
 };
 
-export type StandingWithEntry = {
-  entry: EntryResponse;
+export type StandingWithEntryAndPicks = {
   standing: LeagueEntry;
+  entry: EntryResponse | undefined;
+  picks: EntryPicksResponse | undefined;
 };
