@@ -10,7 +10,11 @@ export default function Providers({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <ThemeProvider attribute="class" disableTransitionOnChange>
+    <ThemeProvider
+      attribute="class"
+      defaultTheme="dark"
+      disableTransitionOnChange
+    >
       <ReactQueryProvider>
         {children}
         <ReactQueryDevtools />
