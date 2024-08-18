@@ -56,9 +56,17 @@ export default async function LeaguePage({
 
   return (
     <div className="flex flex-col gap-y-6">
-      <div className="flex flex-row items-center">
-        <TrophyIcon className="mr-2 size-7 shrink-0" strokeWidth={2.5} />
-        <h1 className="text-4xl font-bold">{league.name}</h1>
+      <div className="flex flex-row items-center justify-between">
+        <div className="flex flex-row items-center">
+          <TrophyIcon className="mr-2 size-7 shrink-0" strokeWidth={2.5} />
+          <h1 className="text-4xl font-bold">{league.name}</h1>
+        </div>
+        <div className="inline-flex items-center rounded-lg border px-2 py-1">
+          <span className="mr-1 animate-pulse pb-px text-lg leading-none text-emerald-500">
+            •
+          </span>
+          <div className="text-base leading-none">Live</div>
+        </div>
       </div>
 
       <HydrationBoundary state={dehydrate(queryClient)}>

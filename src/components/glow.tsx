@@ -1,6 +1,8 @@
 import { cva } from "class-variance-authority";
 import React from "react";
 
+import { cn } from "~/lib/utils";
+
 import type { VariantProps } from "class-variance-authority";
 
 export const glowVariants = cva(
@@ -11,7 +13,7 @@ export const glowVariants = cva(
         rainbow: "bg-gradient-to-r from-blue-500 via-teal-500 to-pink-500",
         gold: [
           "bg-gradient-to-r",
-          "from-yellow-400 via-yellow-500 to-yellow-600",
+          "from-amber-400 via-yellow-500 to-yellow-600",
           "dark:from-yellow-200 dark:via-yellow-400 dark:to-yellow-700",
         ],
         silver: [
@@ -33,22 +35,29 @@ export const glowVariants = cva(
 
 interface GlowProps extends VariantProps<typeof glowVariants> {
   children: React.ReactNode;
+  className?: string;
 }
 
-export default function Glow({ children, color }: GlowProps) {
+export default function Glow({ children, color, className }: GlowProps) {
   return (
     <>
       <span
-        className={`absolute box-content select-none border ${glowVariants({
-          color,
-        })} blur-md`}
+        className={cn(
+          `absolute box-content select-none border blur-md ${glowVariants({
+            color,
+          })}`,
+          className,
+        )}
       >
         {children}
       </span>
       <h1
-        className={`relative top-0 flex h-auto select-auto ${glowVariants({
-          color,
-        })}`}
+        className={cn(
+          `relative top-0 flex h-auto select-auto ${glowVariants({
+            color,
+          })}`,
+          className,
+        )}
       >
         {children}
       </h1>

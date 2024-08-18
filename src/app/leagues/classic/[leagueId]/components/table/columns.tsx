@@ -9,7 +9,7 @@ import Glow from "~/components/glow";
 export const standingsColumns: ColumnDef<StandingWithEntry>[] = [
   {
     accessorKey: "rank",
-    header: () => "Rank",
+    header: () => <span className="text-center">Rank</span>,
     cell: ({ row }) => {
       const rank = row.original.standing.rank;
       // have to explicitly check each one so TypeScript can narrow the type of rank
@@ -22,11 +22,16 @@ export const standingsColumns: ColumnDef<StandingWithEntry>[] = [
       } as const;
 
       return placed ? (
-        <div className="select-none items-center text-xl font-black">
-          <Glow color={placedVariants[rank]}>{rank}</Glow>
+        <div className="select-none items-center text-center text-xl font-black">
+          <Glow
+            className="justify-center text-center"
+            color={placedVariants[rank]}
+          >
+            {rank}
+          </Glow>
         </div>
       ) : (
-        <div className="select-none text-xl font-bold">{rank}</div>
+        <div className="select-none text-center text-xl font-bold">{rank}</div>
       );
     },
   },
@@ -52,16 +57,16 @@ export const standingsColumns: ColumnDef<StandingWithEntry>[] = [
       return (
         <div className="flex flex-col">
           {placed ? (
-            <Glow color={placedVariants[rank]}>
+            <Glow color={placedVariants[rank]} className="whitespace-nowrap">
               {row.original.standing.entry_name}
             </Glow>
           ) : (
-            <span className="font-bold">
+            <span className="whitespace-nowrap font-bold">
               {row.original.standing.entry_name}
             </span>
           )}
 
-          <div className="inline-flex items-center">
+          <div className="inline-flex items-center whitespace-nowrap">
             <ReactCountryFlag
               countryCode={countryCodeIsoShort}
               svg
