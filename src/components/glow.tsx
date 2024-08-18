@@ -21,7 +21,7 @@ export const glowVariants = cva(
         ],
         bronze: [
           "bg-gradient-to-r",
-          "dark:from-yellow-700 dark:via-orange-400 dark:to-red-900",
+          "from-yellow-700 via-orange-400 to-red-900",
         ],
       },
     },
