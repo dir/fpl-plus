@@ -2,6 +2,7 @@
 
 import { MenuIcon } from "lucide-react";
 import { useMemo, useState } from "react";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import { cn } from "~/lib/utils";
@@ -12,6 +13,7 @@ import {
   SheetHeader,
   SheetTrigger,
 } from "~/components/ui/sheet";
+import Glow from "~/components/glow";
 import { Logo } from "~/components/layout/header";
 
 export default function SheetNavMenu({ className }: { className?: string }) {
@@ -23,9 +25,6 @@ export default function SheetNavMenu({ className }: { className?: string }) {
     setOpen(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
-
-  // no links yet
-  return null;
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
@@ -48,8 +47,14 @@ export default function SheetNavMenu({ className }: { className?: string }) {
 
         <div className="flex-1" />
 
-        <div>
-          <p>Bottom stuff</p>
+        <div className="flex flex-row items-center">
+          <p className="text-sm text-muted-foreground">
+            &copy; {new Date().getFullYear()}
+          </p>
+          <span className="mx-1">•</span>
+          <Link href="https://luke.onl">
+            <Glow blur={"sm"}>Luke Davis</Glow>
+          </Link>
         </div>
       </SheetContent>
     </Sheet>

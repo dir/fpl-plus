@@ -15,14 +15,13 @@ export default function HorizontalNavMenu({
 }: {
   className?: string;
 }) {
-  return null;
   return (
     <NavigationMenu className={cn(className)}>
       <NavigationMenuList className="gap-x-3">
         <NavigationMenuItem>
-          <Link href="/docs" legacyBehavior passHref>
+          <Link href="/gameweeks" passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              Test
+              Gameweeks
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>
