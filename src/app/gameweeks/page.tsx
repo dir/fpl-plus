@@ -67,7 +67,13 @@ const getGameweekStatus = (gameweek: EventInfo): GameweekStatus => {
 
 export default async function Gameweeks() {
   const queryClient = getQueryClient();
-  const gameweeks = await queryClient.fetchQuery(getAllEventsOptions());
+
+  const gameweeks = await queryClient
+    .fetchQuery(getAllEventsOptions())
+    .catch((error) => {
+      console.error(error);
+      return [];
+    });
 
   return (
     <>
