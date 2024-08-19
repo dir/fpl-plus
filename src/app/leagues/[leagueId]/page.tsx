@@ -6,7 +6,7 @@ import { TrophyIcon } from "lucide-react";
 import { notFound } from "next/navigation";
 
 import { getQueryClient } from "~/lib/rq/server";
-import StandingsTable from "~/app/leagues/classic/[leagueId]/components/table/table";
+import StandingsTable from "~/app/leagues/[leagueId]/components/table/table";
 
 export async function generateMetadata({
   params,

@@ -36,7 +36,6 @@ export default function FindYourLeaguePage() {
         </CardHeader>
         <CardContent className="flex flex-col items-center gap-6 md:flex-row">
           <div className="flex aspect-video w-full items-center justify-center md:w-1/2">
-            {/* Replace this div with your GIF */}
             <Image
               unoptimized
               src="/howToCode.gif"
@@ -53,7 +52,7 @@ export default function FindYourLeaguePage() {
                 <Link
                   href="https://fantasy.premierleague.com/leagues"
                   target="_blank"
-                  className="font-medium text-green-500"
+                  className="font-medium text-green-500 transition-colors hover:text-green-400"
                 >
                   your leagues
                 </Link>

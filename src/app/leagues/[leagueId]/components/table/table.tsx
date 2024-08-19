@@ -6,7 +6,7 @@ import { getEntryEventPicksByEntryIdOptions } from "~/apis/fpl/queries/event";
 import { getLeagueByIdOptions } from "~/apis/fpl/queries/leagues";
 
 import { DataTable } from "~/components/data-table/data-table";
-import { standingsColumns } from "~/app/leagues/classic/[leagueId]/components/table/columns";
+import { standingsColumns } from "~/app/leagues/[leagueId]/components/table/columns";
 
 export default function StandingsTable({ leagueId }: { leagueId: number }) {
   const {
