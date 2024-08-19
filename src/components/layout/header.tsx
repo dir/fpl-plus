@@ -7,7 +7,7 @@ import SheetNavMenu from "~/components/layout/nav/sheet";
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-50 w-full bg-secondary px-4 py-3 shadow-md md:px-6">
+    <header className="sticky top-0 z-50 w-full bg-secondary px-6 py-3 shadow-md md:px-6">
       <div className="mx-auto flex w-full max-w-screen-2xl flex-row items-center justify-between">
         <SheetNavMenu className="flex md:hidden" />
 

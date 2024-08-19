@@ -66,9 +66,9 @@ export default async function Gameweeks() {
 
   return (
     <>
-      <div className="flex flex-row items-center pb-6">
+      <div className="flex flex-row items-center pb-8">
         <CalendarDaysIcon
-          className="mr-2.5 size-8 shrink-0"
+          className="mr-2.5 size-9 shrink-0"
           strokeWidth={2.5}
         />
         <h1 className="text-4xl font-bold">Gameweeks</h1>
