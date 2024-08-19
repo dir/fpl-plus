@@ -11,7 +11,7 @@ export default function Header() {
       <div className="mx-auto flex w-full max-w-screen-2xl flex-row items-center justify-between">
         <SheetNavMenu className="flex md:hidden" />
 
-        <div className="inline-flex gap-x-4">
+        <div className="inline-flex gap-x-5">
           <Logo />
           <HorizontalNavMenu className="hidden md:flex" />
         </div>

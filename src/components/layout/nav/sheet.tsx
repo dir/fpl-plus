@@ -1,6 +1,7 @@
 "use client";
 
-import { MenuIcon } from "lucide-react";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
+import { CalendarDaysIcon, MenuIcon } from "lucide-react";
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -10,7 +11,10 @@ import { Button } from "~/components/ui/button";
 import {
   Sheet,
   SheetContent,
+  SheetDescription,
+  SheetFooter,
   SheetHeader,
+  SheetTitle,
   SheetTrigger,
 } from "~/components/ui/sheet";
 import Glow from "~/components/glow";
@@ -37,17 +41,28 @@ export default function SheetNavMenu({ className }: { className?: string }) {
 
       <SheetContent
         side="left"
+        aria-describedby="Navigation menu"
         className="flex select-none flex-col space-y-4 overflow-y-auto"
       >
         <SheetHeader className="cursor-default">
-          <div className="flex">
+          <SheetTitle className="flex">
             <Logo />
-          </div>
+          </SheetTitle>
+          <VisuallyHidden>
+            <SheetDescription>Sidebar navigation for FPL+</SheetDescription>
+          </VisuallyHidden>
         </SheetHeader>
+
+        <Link href="/gameweeks">
+          <span className="flex items-center gap-x-2 rounded-md p-2 hover:bg-secondary">
+            <CalendarDaysIcon className="size-5" />
+            <span>Gameweeks</span>
+          </span>
+        </Link>
 
         <div className="flex-1" />
 
-        <div className="flex flex-row items-center">
+        <SheetFooter className="flex flex-row items-center">
           <p className="text-sm text-muted-foreground">
             &copy; {new Date().getFullYear()}
           </p>
@@ -55,7 +70,7 @@ export default function SheetNavMenu({ className }: { className?: string }) {
           <Link href="https://luke.onl">
             <Glow blur={"sm"}>Luke Davis</Glow>
           </Link>
-        </div>
+        </SheetFooter>
       </SheetContent>
     </Sheet>
   );

@@ -94,9 +94,9 @@ export default async function Gameweeks() {
                   )}
                   {!gameweek.is_next &&
                     status.daysUntilDeadline !== undefined && (
-                      <div className="mt-1 text-sm text-gray-500">
+                      <span className="mt-1 text-sm text-gray-500">
                         {status.daysUntilDeadline} days until deadline
-                      </div>
+                      </span>
                     )}
                 </CardDescription>
               </CardHeader>
