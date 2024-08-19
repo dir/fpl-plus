@@ -1,11 +1,13 @@
 "use client";
 
 import { soccerPitch } from "@lucide/lab";
-import { useSuspenseQueries } from "@tanstack/react-query";
+import { useSuspenseQueries, useSuspenseQuery } from "@tanstack/react-query";
 import { getTeamByIdOptions } from "~/apis/fpl-plus/queries/teams";
 import { TeamWithAdditionalProperties } from "~/apis/fpl-plus/service/teams.service";
+import { getFixturesByEventIdOptions } from "~/apis/fpl/queries/fixtures";
 import { Fixture } from "~/apis/fpl/types/fixtures.types";
 import { Icon } from "lucide-react";
+import { useEffect, useState } from "react";
 
 import { cn } from "~/lib/utils";
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
@@ -17,12 +19,26 @@ export type FixtureWithTeams = Fixture & {
 };
 
 export default function Fixtures({
-  fixtures,
+  gameweek,
   className,
 }: {
-  fixtures: Fixture[];
+  gameweek: number;
   className?: string;
 }) {
+  const [hasLiveFixture, setHasLiveFixture] = useState(false);
+
+  const { data: fixtures } = useSuspenseQuery({
+    ...getFixturesByEventIdOptions(gameweek),
+    refetchInterval: hasLiveFixture ? 30000 : false,
+  });
+
+  useEffect(() => {
+    const liveFixtureExists = fixtures.some(
+      (fixture) => fixture.started && !fixture.finished,
+    );
+    setHasLiveFixture(liveFixtureExists);
+  }, [fixtures]);
+
   const teamQueries = useSuspenseQueries({
     queries: fixtures.flatMap((fixture) => [
       getTeamByIdOptions(fixture.team_a),

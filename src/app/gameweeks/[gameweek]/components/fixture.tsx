@@ -51,8 +51,12 @@ function TeamDisplay({
       <Image
         src={`/badges/100/t${team.code}.png`}
         alt={team.short_name}
-        width={40}
-        height={40}
+        width={35}
+        height={35}
+        style={{
+          width: "auto",
+          height: "auto",
+        }}
         className={cn(
           "rounded-full",
           isWinner && "outline-2 ring ring-green-500",
@@ -83,6 +87,7 @@ function ScoreDisplay({
       <LiveScore
         homeScore={fixture.team_h_score!}
         awayScore={fixture.team_a_score!}
+        minutes={fixture.minutes}
       />
     );
   }
@@ -109,16 +114,23 @@ function FinishedScore({
 function LiveScore({
   homeScore,
   awayScore,
+  minutes,
 }: {
   homeScore: number;
   awayScore: number;
+  minutes: number;
 }) {
   return (
     <div className="flex flex-col items-center justify-center">
       <div className="text-lg font-semibold">
         {homeScore} - {awayScore}
       </div>
-      <div className="text-sm font-semibold text-green-500">Live</div>
+      <div className="text-sm font-semibold text-green-500">
+        <span className="mr-1.5 animate-pulse pb-px text-lg leading-none text-emerald-500">
+          •
+        </span>
+        {minutes}&apos;
+      </div>
     </div>
   );
 }

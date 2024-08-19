@@ -86,7 +86,7 @@ export default async function Gameweek({
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-12">
         <HydrationBoundary state={dehydrate(queryClient)}>
           <Fixtures
-            fixtures={fixtures}
+            gameweek={Number(params.gameweek)}
             className={cn("col-span-6", gameweekStatus.cardClassName)}
           />
         </HydrationBoundary>
