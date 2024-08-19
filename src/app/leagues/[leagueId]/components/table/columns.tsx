@@ -83,7 +83,6 @@ export const standingsColumns: ColumnDef<StandingWithEntryAndPicks>[] = [
     accessorKey: "event_total",
     header: "GW",
     cell: async ({ row }) => {
-      const eventTotal = row.original.standing.event_total;
       const latestPoints = getLatestPointsForEvent({
         event: await fetchLiveEventById(1)(),
         picks: row.original.picks?.picks ?? [],
