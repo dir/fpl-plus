@@ -14,19 +14,4 @@ export const NavConfig: NavConfig = [
     title: "Gameweeks",
     icon: CalendarDaysIcon,
   },
-  {
-    href: "/gameweeks",
-    title: "Gameweeks",
-    icon: CalendarDaysIcon,
-  },
-  {
-    href: "/gameweeks",
-    title: "Gameweeks",
-    icon: CalendarDaysIcon,
-  },
-  {
-    href: "/gameweeks",
-    title: "Gameweeks",
-    icon: CalendarDaysIcon,
-  },
 ] as const;
