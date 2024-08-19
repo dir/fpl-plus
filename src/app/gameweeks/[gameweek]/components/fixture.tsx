@@ -14,7 +14,7 @@ export default function FixtureCard({
 }) {
   const { team_h_data: homeTeam, team_a_data: awayTeam } = fixture;
   const kickoffTime = formatKickoffTime(fixture.kickoff_time);
-  const isFinished = fixture.finished;
+  const isFinished = fixture.finished || fixture.finished_provisional;
   const homeWinner =
     isFinished && fixture.team_h_score! > fixture.team_a_score!;
   const awayWinner =
@@ -74,7 +74,7 @@ function ScoreDisplay({
   fixture: Fixture;
   kickoffTime: string;
 }) {
-  if (fixture.finished) {
+  if (fixture.finished || fixture.finished_provisional) {
     return (
       <FinishedScore
         homeScore={fixture.team_h_score!}
