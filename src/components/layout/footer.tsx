@@ -11,7 +11,7 @@ export default function Footer() {
         </p>
         <span className="mx-1">•</span>
         <Link href="https://luke.onl">
-          <Glow blur={"sm"}>Luke Davis</Glow>
+          <Glow blur={"lg"}>Luke Davis</Glow>
         </Link>
       </div>
     </footer>
