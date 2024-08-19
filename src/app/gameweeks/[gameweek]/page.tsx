@@ -12,7 +12,6 @@ import {
   CardHeader,
   CardTitle,
 } from "~/components/ui/card";
-import DeadlineCounter from "~/app/gameweeks/components/deadline-counter";
 
 type BadgeVariant = "success" | "pending" | "muted";
 

@@ -1,4 +1,4 @@
-import { CalendarDaysIcon } from "lucide-react";
+import { CalendarDaysIcon, ScanSearchIcon } from "lucide-react";
 
 export type NavItem = {
   href: string;
@@ -9,6 +9,11 @@ export type NavItem = {
 export type NavConfig = readonly NavItem[];
 
 export const NavConfig: NavConfig = [
+  {
+    href: "/find-your-league",
+    title: "Find your league",
+    icon: ScanSearchIcon,
+  },
   {
     href: "/gameweeks",
     title: "Gameweeks",
