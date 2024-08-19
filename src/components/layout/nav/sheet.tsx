@@ -97,7 +97,7 @@ export default function SheetNavMenu({ className }: { className?: string }) {
 
 function SheetNavItem({ href, title, icon: Icon }: NavItem) {
   return (
-    <NavigationMenuItem>
+    <NavigationMenuItem className="w-full py-0">
       <Link href={href} passHref legacyBehavior>
         <NavigationMenuLink
           className={cn(

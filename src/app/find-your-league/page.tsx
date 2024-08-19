@@ -13,7 +13,7 @@ import { LeagueSearchForm } from "~/app/find-your-league/input";
 
 export default function FindYourLeaguePage() {
   return (
-    <div className="mx-auto mt-12 flex w-full max-w-screen-md flex-col items-center gap-y-8 bg-background px-4">
+    <div className="mx-auto mt-8 flex w-full max-w-screen-md flex-col items-center gap-y-8 bg-background px-4">
       <Card className="w-full max-w-md">
         <CardHeader>
           <CardTitle className="flex text-2xl">
@@ -38,6 +38,7 @@ export default function FindYourLeaguePage() {
           <div className="flex aspect-video w-full items-center justify-center md:w-1/2">
             {/* Replace this div with your GIF */}
             <Image
+              unoptimized
               src="/howToCode.gif"
               width="500"
               height="500"
