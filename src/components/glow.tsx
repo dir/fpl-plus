@@ -28,11 +28,12 @@ export const glowVariants = cva(
       },
       blur: {
         none: "",
-        xs: "blur-sm",
-        sm: "blur-md",
-        md: "blur-lg",
-        lg: "blur-xl",
-        xl: "blur-2xl",
+        xs: "blur-xs",
+        sm: "blur-sm",
+        md: "blur-md",
+        lg: "blur-lg",
+        xl: "blur-xl",
+        "2xl": "blur-2xl",
       },
     },
     defaultVariants: {

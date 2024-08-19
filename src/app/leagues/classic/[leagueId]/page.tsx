@@ -64,14 +64,14 @@ export default async function LeaguePage({
   });
 
   return (
-    <div className="flex flex-col gap-y-6">
+    <>
       <div className="flex flex-row items-center justify-between">
-        <div className="flex flex-row items-center">
-          <TrophyIcon className="mr-2 size-7 shrink-0" strokeWidth={2.5} />
+        <div className="mt-8 flex flex-row items-center pb-6">
+          <TrophyIcon className="mr-2.5 size-9 shrink-0" strokeWidth={2.5} />
           <h1 className="text-4xl font-bold">{league.name}</h1>
         </div>
-        <div className="inline-flex select-none items-center rounded-lg border px-2 py-1">
-          <span className="mr-1 animate-pulse pb-px text-lg leading-none text-emerald-500">
+        <div className="inline-flex h-8 select-none items-center rounded-lg border px-2.5 py-1">
+          <span className="mr-1.5 animate-pulse pb-px text-lg leading-none text-emerald-500">
             •
           </span>
           <div className="text-base leading-none">Live</div>
@@ -81,6 +81,6 @@ export default async function LeaguePage({
       <HydrationBoundary state={dehydrate(queryClient)}>
         <StandingsTable leagueId={leagueId} />
       </HydrationBoundary>
-    </div>
+    </>
   );
 }

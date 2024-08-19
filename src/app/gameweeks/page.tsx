@@ -2,6 +2,7 @@ import { getAllEventsOptions } from "~/apis/fpl/queries/entries";
 import { EventInfo } from "~/apis/fpl/types/event.types";
 import { differenceInDays } from "date-fns";
 import { CalendarDaysIcon } from "lucide-react";
+import Link from "next/link";
 
 import { getQueryClient } from "~/lib/rq/server";
 import { Badge } from "~/components/ui/badge";
@@ -31,7 +32,7 @@ const getGameweekStatus = (gameweek: EventInfo): GameweekStatus => {
   if (gameweek.is_current)
     return {
       status: "current",
-      label: "Current",
+      label: "Active",
       variant: "success",
       cardClassName: "border-emerald-500",
     };
@@ -88,7 +89,7 @@ export default async function Gameweeks() {
 
   return (
     <>
-      <div className="flex flex-row items-center pb-8">
+      <div className="mt-8 flex flex-row items-center pb-6">
         <CalendarDaysIcon
           className="mr-2.5 size-9 shrink-0"
           strokeWidth={2.5}
@@ -98,43 +99,60 @@ export default async function Gameweeks() {
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {gameweeks.map((gameweek) => {
           const gameweekStatus = getGameweekStatus(gameweek);
+          const href =
+            gameweekStatus.status === "current" ||
+            gameweekStatus.status === "finished" ||
+            gameweekStatus.status === "previous" ||
+            gameweekStatus.status === "next"
+              ? `/gameweeks/${gameweek.id}`
+              : "#";
+
           return (
-            <Card
+            <Link
               key={gameweek.id}
-              className={`border ${gameweekStatus.cardClassName}`}
+              href={href}
+              className={
+                href === "#"
+                  ? "cursor-not-allowed"
+                  : "group transition-all hover:scale-[1.03]"
+              }
             >
-              <CardHeader>
-                <CardTitle className="inline-flex items-center gap-x-4 pb-1">
-                  {gameweek.name}
-                  <Badge variant={gameweekStatus.variant}>
-                    {gameweekStatus.label}
-                  </Badge>
-                </CardTitle>
-                <CardDescription>
-                  {gameweekStatus.status === "next" && (
-                    <>
-                      <span className="font-light">Starts in</span>{" "}
-                      <DeadlineCounter
-                        className="font-medium"
-                        deadline={gameweek.deadline_time}
-                      />
-                    </>
-                  )}
-                  {gameweekStatus.status === "future" && (
-                    <>
-                      <span className="font-light">Starts in</span>{" "}
-                      {gameweekStatus.daysUntilDeadline} days
-                    </>
-                  )}
-                  {gameweekStatus.status === "current" && (
-                    <>
-                      <span className="font-light">Started on</span>{" "}
-                      {new Date(gameweek.deadline_time).toLocaleDateString()}
-                    </>
-                  )}
-                </CardDescription>
-              </CardHeader>
-            </Card>
+              <Card
+                className={`border transition-all group-hover:border-2 ${gameweekStatus.cardClassName}`}
+              >
+                <CardHeader>
+                  <CardTitle className="inline-flex items-center gap-x-4 pb-1">
+                    {gameweek.name}
+                    <Badge variant={gameweekStatus.variant}>
+                      {gameweekStatus.label}
+                    </Badge>
+                  </CardTitle>
+                  <CardDescription>
+                    {gameweekStatus.status === "next" && (
+                      <>
+                        <span className="font-light">Starts in</span>{" "}
+                        <DeadlineCounter
+                          className="font-medium"
+                          deadline={gameweek.deadline_time}
+                        />
+                      </>
+                    )}
+                    {gameweekStatus.status === "future" && (
+                      <>
+                        <span className="font-light">Starts in</span>{" "}
+                        {gameweekStatus.daysUntilDeadline} days
+                      </>
+                    )}
+                    {gameweekStatus.status === "current" && (
+                      <>
+                        <span className="font-light">Started on</span>{" "}
+                        {new Date(gameweek.deadline_time).toLocaleDateString()}
+                      </>
+                    )}
+                  </CardDescription>
+                </CardHeader>
+              </Card>
+            </Link>
           );
         })}
       </div>

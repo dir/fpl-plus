@@ -1,4 +1,5 @@
 import * as React from "react";
+import Link from "next/link";
 
 import { cn } from "~/lib/utils";
 import { ThemeToggleButton } from "~/components/ui/theme-toggle";
@@ -12,7 +13,9 @@ export default function Header() {
         <SheetNavMenu className="flex md:hidden" />
 
         <div className="inline-flex gap-x-5">
-          <Logo />
+          <Link href="/" className="flex">
+            <Logo />
+          </Link>
           <HorizontalNavMenu className="hidden md:flex" />
         </div>
 
