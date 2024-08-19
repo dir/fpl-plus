@@ -3,6 +3,6 @@ import { fetchFixturesByEventId } from "~/apis/fpl/service/fixtures.service";
 
 export const getFixturesByEventIdOptions = (eventId: number) =>
   queryOptions({
-    queryKey: ["fixtures", eventId],
+    queryKey: ["fpl-api", "fixtures", eventId],
     queryFn: fetchFixturesByEventId(eventId),
   });

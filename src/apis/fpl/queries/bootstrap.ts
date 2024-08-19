@@ -3,7 +3,7 @@ import { fetchBootstrapStatic } from "~/apis/fpl/service/bootstrap.service";
 
 export const getBootstrapStaticOptions = () =>
   queryOptions({
-    queryKey: ["bootstrap-static"],
+    queryKey: ["fpl-api", "bootstrap-static"],
     queryFn: fetchBootstrapStatic(),
-    staleTime: 1000 * 60 * 5,
+    staleTime: 1000 * 60 * 60,
   });
