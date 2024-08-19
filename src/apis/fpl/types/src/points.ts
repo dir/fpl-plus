@@ -14,7 +14,7 @@ export const getLatestPointsForEvent = ({
     );
     if (!player) return acc;
 
-    return acc + player.stats.total_points;
+    return acc + player.stats.total_points * pick.multiplier;
   }, 0);
 
   return points;

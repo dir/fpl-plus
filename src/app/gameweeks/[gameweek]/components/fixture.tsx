@@ -22,7 +22,7 @@ export default function FixtureCard({
 
   return (
     <Card className="overflow-hidden">
-      <div className="grid grid-cols-3 items-center px-3 py-2">
+      <div className="grid grid-cols-3 items-center px-3 py-1">
         <TeamDisplay team={homeTeam} isHome isWinner={homeWinner} />
         <ScoreDisplay fixture={fixture} kickoffTime={kickoffTime} />
         <TeamDisplay team={awayTeam} isWinner={awayWinner} />
@@ -51,15 +51,15 @@ function TeamDisplay({
       <Image
         src={`/badges/100/t${team.code}.png`}
         alt={team.short_name}
-        width={35}
-        height={35}
+        width={30}
+        height={30}
         style={{
           width: "auto",
           height: "auto",
         }}
         className={cn(
           "rounded-full",
-          isWinner && "outline-2 ring ring-green-500",
+          isWinner && "ring-2 ring-green-500 ring-offset-2 ring-offset-card",
         )}
       />
       <span>{team.short_name}</span>
@@ -122,10 +122,10 @@ function LiveScore({
 }) {
   return (
     <div className="flex flex-col items-center justify-center">
-      <div className="text-lg font-semibold">
+      <div className="text-2xl font-bold">
         {homeScore} - {awayScore}
       </div>
-      <div className="text-sm font-semibold text-green-500">
+      <div className="text-xs font-semibold text-green-500">
         <span className="mr-1.5 animate-pulse pb-px text-lg leading-none text-emerald-500">
           •
         </span>

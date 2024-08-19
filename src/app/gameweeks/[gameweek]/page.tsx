@@ -92,12 +92,12 @@ export default async function Gameweek({
         </HydrationBoundary>
         <Card className={`col-span-3 border ${gameweekStatus.cardClassName}`}>
           <CardHeader>
-            <CardDescription>Work</CardDescription>
+            <CardDescription>work in progress</CardDescription>
           </CardHeader>
         </Card>
         <Card className={`col-span-3 border ${gameweekStatus.cardClassName}`}>
           <CardHeader>
-            <CardDescription>in</CardDescription>
+            <CardDescription>work in progress</CardDescription>
           </CardHeader>
         </Card>
       </div>
