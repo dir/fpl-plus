@@ -29,8 +29,8 @@ export function LeagueSearchForm() {
   return (
     <form onSubmit={handleSubmit} className="w-full">
       <Input
-        placeholder="League code"
-        className="mb-4 w-full [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+        placeholder="12345"
+        className="text-md mb-5 w-full font-mono [appearance:textfield] placeholder:text-muted-foreground/55 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
         value={leagueCode}
         type="number"
         min={1}

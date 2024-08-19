@@ -80,7 +80,14 @@ export default async function Gameweek({
         <div className="pt-2">
           <span className="font-light">Entry Deadline:</span>{" "}
           <span className="font-semibold">
-            {new Date(gameweek.deadline_time).toLocaleString()}
+            {new Date(gameweek.deadline_time).toLocaleString(undefined, {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+              hour: "2-digit",
+              minute: "2-digit",
+              hour12: true,
+            })}
           </span>
         </div>
       </div>
