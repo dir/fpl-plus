@@ -75,6 +75,17 @@ export default async function Gameweeks() {
       return [];
     });
 
+  if (!gameweeks)
+    return (
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-2xl font-bold">
+            No gameweeks found
+          </CardTitle>
+        </CardHeader>
+      </Card>
+    );
+
   return (
     <>
       <div className="flex flex-row items-center pb-8">
