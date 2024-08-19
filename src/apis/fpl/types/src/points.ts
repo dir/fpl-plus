@@ -1,4 +1,3 @@
-/*
 import { EventResponse } from "~/apis/fpl/types/event.types";
 import { Pick } from "~/apis/fpl/types/picks.types";
 
@@ -9,11 +8,14 @@ export const getLatestPointsForEvent = ({
   event: EventResponse;
   picks: Pick[];
 }) => {
-  return data.picks.reduce(
-    (total, p) =>
-      total +
-      elementsEventDataById[p.element].stats.total_points * p.multiplier,
-    0,
-  );
+  const points = picks.reduce((acc, pick) => {
+    const player = event.elements.find(
+      (element) => element.id === pick.element,
+    );
+    if (!player) return acc;
+
+    return acc + player.stats.total_points;
+  }, 0);
+
+  return points;
 };
-*/

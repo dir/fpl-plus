@@ -8,6 +8,6 @@ export const fetchFixturesByEventId = (eventId: number) => async () =>
       "Content-Type": "application/json",
     },
     next: {
-      revalidate: 60,
+      revalidate: 0.1,
     },
   }).then((res) => res.json() as Promise<Fixture[]>);

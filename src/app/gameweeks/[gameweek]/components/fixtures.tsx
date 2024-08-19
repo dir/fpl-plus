@@ -29,7 +29,7 @@ export default function Fixtures({
 
   const { data: fixtures } = useSuspenseQuery({
     ...getFixturesByEventIdOptions(gameweek),
-    refetchInterval: hasLiveFixture ? 30000 : false,
+    refetchInterval: hasLiveFixture ? 20000 : false,
   });
 
   useEffect(() => {
