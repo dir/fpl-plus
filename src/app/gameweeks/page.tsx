@@ -3,6 +3,7 @@ import { CalendarDaysIcon } from "lucide-react";
 import Link from "next/link";
 
 import { getQueryClient } from "~/lib/rq/server";
+import { cn } from "~/lib/utils";
 import { Badge } from "~/components/ui/badge";
 import {
   Card,
@@ -66,7 +67,10 @@ export default async function Gameweeks() {
               }
             >
               <Card
-                className={`border transition-all group-hover:border-2 ${gameweekStatus.cardClassName}`}
+                className={cn(
+                  "border transition-all group-hover:border-2",
+                  gameweekStatus.cardClassName,
+                )}
               >
                 <CardHeader>
                   <CardTitle className="inline-flex items-center gap-x-4 pb-1">

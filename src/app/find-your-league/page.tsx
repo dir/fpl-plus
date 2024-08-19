@@ -13,10 +13,10 @@ import { LeagueSearchForm } from "~/app/find-your-league/input";
 
 export default function FindYourLeaguePage() {
   return (
-    <div className="mx-auto mt-8 flex w-full max-w-screen-md flex-col items-center gap-y-8 bg-background px-4">
+    <div className="mx-auto mt-8 flex w-full max-w-screen-md flex-col items-center gap-y-6 bg-background px-4 md:gap-y-8">
       <Card className="w-full max-w-md">
-        <CardHeader>
-          <CardTitle className="flex text-2xl">
+        <CardHeader className="pb-4">
+          <CardTitle className="inline-flex items-center text-2xl">
             Find your league <ScanSearchIcon className="ml-3" />
           </CardTitle>
           <CardDescription>
@@ -29,13 +29,13 @@ export default function FindYourLeaguePage() {
       </Card>
 
       <Card className="w-full">
-        <CardHeader className="pb-3">
+        <CardHeader>
           <CardTitle className="flex items-center text-xl">
             <CircleHelpIcon className="mr-2" /> Get your league code
           </CardTitle>
         </CardHeader>
-        <CardContent className="flex flex-col items-center gap-6 md:flex-row">
-          <div className="flex aspect-video w-full items-center justify-center md:w-1/2">
+        <CardContent className="flex flex-col items-center gap-3.5 md:flex-row md:gap-6">
+          <div className="flex aspect-video w-full items-center justify-center overflow-hidden rounded-lg border-2 border-green-500 border-muted md:w-1/2">
             <Image
               unoptimized
               src="/howToCode.gif"
