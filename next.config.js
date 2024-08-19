@@ -17,7 +17,7 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: "/fpl/:path*/",
+        source: "/fpl/:path*",
         destination: `${env.NEXT_PUBLIC_FPL_API_BASE_URL}/:path*/`,
       },
     ];

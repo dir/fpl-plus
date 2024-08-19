@@ -1,7 +1,9 @@
 "use client";
 
 import { ColumnDef } from "@tanstack/react-table";
+import { fetchLiveEventById } from "~/apis/fpl/service/event.service";
 import { StandingWithEntryAndPicks } from "~/apis/fpl/types/league.types";
+import { getLatestPointsForEvent } from "~/apis/fpl/types/src/points";
 import ReactCountryFlag from "react-country-flag";
 
 import Glow from "~/components/glow";
@@ -80,9 +82,17 @@ export const standingsColumns: ColumnDef<StandingWithEntryAndPicks>[] = [
   {
     accessorKey: "event_total",
     header: "GW",
-    cell: ({ row }) => {
+    cell: async ({ row }) => {
       const eventTotal = row.original.standing.event_total;
-      return <div className="text-xl font-bold">{eventTotal}</div>;
+      const latestPoints = getLatestPointsForEvent({
+        event: await fetchLiveEventById(1)(),
+        picks: row.original.picks?.picks ?? [],
+      });
+      return (
+        <div>
+          <div className="text-xl font-bold">{latestPoints}</div>
+        </div>
+      );
     },
   },
   {

@@ -7,9 +7,17 @@ import { EntryPicksResponse } from "~/apis/fpl/types/picks.types";
 
 export type LeagueStandingsResponse = {
   new_entries: NewEntries;
-  last_updated_data: Date;
+  last_updated_data: string;
   league: League;
   standings: Standings;
+};
+
+export type NewLeagueEntry = {
+  entry: number;
+  entry_name: string;
+  joined_time: string;
+  player_first_name: string;
+  player_last_name: string;
 };
 
 export type Pagination = {
@@ -18,7 +26,7 @@ export type Pagination = {
 };
 
 export type NewEntries = Pagination & {
-  results: unknown[]; // not sure what this is
+  results: NewLeagueEntry[];
 };
 
 export type Standings = Pagination & {

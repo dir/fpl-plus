@@ -4,14 +4,14 @@ import { fetchAllEvents } from "~/apis/fpl/service/event.service";
 
 export const getEntryByIdOptions = (id: number) =>
   queryOptions({
-    queryKey: ["entry", id],
+    queryKey: ["fpl-api", "entry", id],
     queryFn: fetchEntryById(id),
     staleTime: 1000 * 60 * 5,
   });
 
 export const getAllEventsOptions = () =>
   queryOptions({
-    queryKey: ["events"],
+    queryKey: ["fpl-api", "events"],
     queryFn: fetchAllEvents(),
     staleTime: 1000 * 60 * 5,
   });

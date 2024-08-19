@@ -6,7 +6,7 @@ import {
 
 export const getLiveEventByIdOptions = (id: number) =>
   queryOptions({
-    queryKey: ["live-event", id],
+    queryKey: ["fpl-api", "live-event", id],
     queryFn: fetchLiveEventById(id),
   });
 
@@ -15,6 +15,6 @@ export const getEntryEventPicksByEntryIdOptions = (
   eventId: number,
 ) =>
   queryOptions({
-    queryKey: ["live-event", entryId, eventId],
+    queryKey: ["fpl-api", "live-event", entryId, eventId],
     queryFn: fetchEntryEventPicksByEntryId(entryId, eventId),
   });
