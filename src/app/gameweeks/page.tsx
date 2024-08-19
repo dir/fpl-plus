@@ -58,7 +58,7 @@ const getGameweekStatus = (gameweek: EventInfo): GameweekStatus => {
     };
   return {
     status: "future",
-    label: `${daysUntilDeadline} days`,
+    label: "Future",
     variant: "muted",
     cardClassName: "opacity-50",
     daysUntilDeadline,
@@ -117,16 +117,6 @@ export default async function Gameweeks() {
                   )}
                 </CardDescription>
               </CardHeader>
-              {/*
-              <CardContent>
-                <CardDescription>
-                  {gameweek.finished ? "Finished" : "Not finished"}
-                </CardDescription>
-              </CardContent>
-              <CardFooter>
-                <div>View</div>
-              </CardFooter>
-              */}
             </Card>
           );
         })}
