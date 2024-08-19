@@ -58,8 +58,6 @@ const getGameweekStatus = (gameweek: EventInfo): GameweekStatus => {
   };
 };
 
-export const dynamic = "force-dynamic";
-
 export default async function Gameweeks() {
   const queryClient = getQueryClient();
   const gameweeks = await queryClient.fetchQuery(getAllEventsOptions());
