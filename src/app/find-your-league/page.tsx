@@ -29,9 +29,9 @@ export default function FindYourLeaguePage() {
       </Card>
 
       <Card className="w-full">
-        <CardHeader>
+        <CardHeader className="pb-3">
           <CardTitle className="flex items-center text-xl">
-            <CircleHelpIcon className="mr-2" /> How to get your league code
+            <CircleHelpIcon className="mr-2" /> Get your league code
           </CardTitle>
         </CardHeader>
         <CardContent className="flex flex-col items-center gap-6 md:flex-row">
@@ -44,8 +44,8 @@ export default function FindYourLeaguePage() {
               alt="GIF placeholder"
             />
           </div>
-          <CardDescription className="w-full md:w-1/2">
-            <ol className="list-inside list-decimal space-y-2">
+          <div className="w-full md:w-1/2">
+            <ol className="list-inside list-decimal space-y-2 text-sm marker:font-medium marker:text-green-500">
               <li>Open your browser of choice</li>
               <li>
                 Navigate to{" "}
@@ -60,7 +60,7 @@ export default function FindYourLeaguePage() {
               <li>Click on the league you&apos;d like to view</li>
               <li>Copy the numbers from the URL</li>
             </ol>
-          </CardDescription>
+          </div>
         </CardContent>
       </Card>
     </div>

@@ -66,10 +66,12 @@ export default async function Gameweek({
       <div className="mb-5 mt-1">
         <div className="flex flex-row items-center">
           <CalendarDaysIcon
-            className="mr-2.5 size-9 shrink-0"
+            className="mr-1.5 size-8 shrink-0 md:mr-2.5 md:size-9"
             strokeWidth={2.5}
           />
-          <h1 className="text-4xl font-bold">Gameweek {params.gameweek}</h1>
+          <h2 className="text-3xl font-bold md:text-4xl">
+            Gameweek {params.gameweek}
+          </h2>
           <Badge className="ml-4" variant={gameweekStatus.variant}>
             {gameweekStatus.label}
           </Badge>
