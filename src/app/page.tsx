@@ -8,7 +8,7 @@ import BoxReveal from "~/components/ui/special/box-reveal";
 
 export default function HomePage() {
   return (
-    <div className="mt-10 flex items-center justify-center">
+    <div className="mt-6 flex items-center justify-center px-4 sm:mt-10">
       <div className="z-40 justify-center">
         <Hero />
       </div>
@@ -33,6 +33,7 @@ function Hero() {
           >
             premier league fantasy
           </Link>
+          .
         </h2>
       </BoxReveal>
 
@@ -62,10 +63,10 @@ function Hero() {
 function BigLogo() {
   return (
     <div className="-ml-1 flex flex-row">
-      <h1 className="bg-gradient-to-b from-neutral-200 to-neutral-400 bg-clip-text text-center font-sans text-8xl font-bold text-transparent">
+      <h1 className="bg-gradient-to-b from-neutral-200 to-neutral-400 bg-clip-text text-center font-sans text-8xl font-semibold text-transparent sm:font-bold">
         FPL
       </h1>
-      <sup className="translate-y-6 bg-gradient-to-b from-blue-600 via-green-500 to-indigo-400 bg-clip-text text-center font-sans text-6xl font-bold text-transparent">
+      <sup className="translate-y-6 bg-gradient-to-b from-blue-600 via-green-500 to-indigo-400 bg-clip-text text-center font-sans text-6xl font-semibold text-transparent sm:font-bold">
         +
       </sup>
     </div>
