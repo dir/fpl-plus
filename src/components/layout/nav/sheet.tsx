@@ -6,8 +6,16 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+import { NavConfig, NavItem } from "~/config/nav";
 import { cn } from "~/lib/utils";
 import { Button } from "~/components/ui/button";
+import {
+  NavigationMenu,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  navigationMenuTriggerStyle,
+} from "~/components/ui/navigation-menu";
 import {
   Sheet,
   SheetContent,
@@ -42,10 +50,10 @@ export default function SheetNavMenu({ className }: { className?: string }) {
       <SheetContent
         side="left"
         aria-describedby="Navigation menu"
-        className="flex select-none flex-col space-y-4 overflow-y-auto"
+        className="flex select-none flex-col items-start"
       >
         <SheetHeader className="cursor-default">
-          <SheetTitle className="flex">
+          <SheetTitle>
             <Logo />
           </SheetTitle>
           <VisuallyHidden>
@@ -53,12 +61,23 @@ export default function SheetNavMenu({ className }: { className?: string }) {
           </VisuallyHidden>
         </SheetHeader>
 
-        <Link href="/gameweeks">
-          <span className="flex items-center gap-x-2 rounded-md p-2 hover:bg-secondary">
-            <CalendarDaysIcon className="size-5" />
-            <span>Gameweeks</span>
-          </span>
-        </Link>
+        <div className="flex w-full">
+          <NavigationMenu
+            orientation="vertical"
+            className="min-w-full justify-start"
+          >
+            <NavigationMenuList className="flex flex-col gap-y-2 space-x-0">
+              {NavConfig.map(({ href, title, icon }) => (
+                <SheetNavItem
+                  key={href}
+                  href={href}
+                  title={title}
+                  icon={icon}
+                />
+              ))}
+            </NavigationMenuList>
+          </NavigationMenu>
+        </div>
 
         <div className="flex-1" />
 
@@ -73,5 +92,23 @@ export default function SheetNavMenu({ className }: { className?: string }) {
         </SheetFooter>
       </SheetContent>
     </Sheet>
+  );
+}
+
+function SheetNavItem({ href, title, icon: Icon }: NavItem) {
+  return (
+    <NavigationMenuItem>
+      <Link href={href} passHref legacyBehavior>
+        <NavigationMenuLink
+          className={cn(
+            navigationMenuTriggerStyle(),
+            "p-0 py-0 hover:bg-transparent hover:text-green-500 focus:bg-transparent focus:text-green-500",
+          )}
+        >
+          <Icon className="mr-2 size-5" />
+          <span className="text-xl">{title}</span>
+        </NavigationMenuLink>
+      </Link>
+    </NavigationMenuItem>
   );
 }
