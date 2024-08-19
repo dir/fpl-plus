@@ -12,7 +12,11 @@ export const fetchAllEvents = () => async () =>
     next: {
       revalidate: 60,
     },
-  }).then((res) => res.json() as Promise<EventInfo[]>);
+  })
+    .then((res) => res.json() as Promise<EventInfo[]>)
+    .catch((error) => {
+      console.error("Error:", error);
+    });
 
 export const fetchLiveEventById = (id: number) => async () =>
   await fetch(`${getBaseUrl()}/fpl/event/${id}/live`, {

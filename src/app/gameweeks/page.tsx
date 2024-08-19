@@ -7,21 +7,19 @@ import { getQueryClient } from "~/lib/rq/server";
 import { Badge } from "~/components/ui/badge";
 import {
   Card,
-  CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "~/components/ui/card";
-import { Separator } from "~/components/ui/separator";
 import DeadlineCounter from "~/app/gameweeks/components/deadline-counter";
 
 type BadgeVariant = "success" | "pending" | "muted";
 
 type GameweekStatus = {
+  status: "current" | "next" | "previous" | "future" | "finished";
   label: string;
   variant: BadgeVariant;
-  border: string;
+  cardClassName: string;
   daysUntilDeadline?: number;
 };
 
@@ -32,82 +30,110 @@ const getGameweekStatus = (gameweek: EventInfo): GameweekStatus => {
 
   if (gameweek.is_current)
     return {
+      status: "current",
       label: "Current",
       variant: "success",
-      border: "border-emerald-500",
+      cardClassName: "border-emerald-500",
     };
   if (gameweek.is_next)
     return {
+      status: "next",
       label: "Upcoming",
       variant: "pending",
-      border: "border-amber-500",
+      cardClassName: "border-amber-500",
     };
   if (gameweek.is_previous && gameweek.finished)
     return {
+      status: "previous",
       label: "Finished",
       variant: "success",
-      border: "border-emerald-500",
+      cardClassName: "border-emerald-500",
     };
   if (gameweek.finished)
-    return { label: "Finished", variant: "muted", border: "border-gray-500" };
+    return {
+      status: "finished",
+      label: "Finished",
+      variant: "muted",
+      cardClassName: "border-gray-500",
+    };
   return {
-    label: `${daysUntilDeadline} days`,
+    status: "future",
+    label: "Future",
     variant: "muted",
-    border: "",
+    cardClassName: "opacity-50",
     daysUntilDeadline,
   };
 };
 
-export const dynamic = "force-dynamic";
-
 export default async function Gameweeks() {
   const queryClient = getQueryClient();
-  const gameweeks = await queryClient.fetchQuery(getAllEventsOptions());
+
+  const gameweeks = await queryClient
+    .fetchQuery(getAllEventsOptions())
+    .catch((error) => {
+      console.error(error);
+      return [];
+    });
+
+  if (!gameweeks)
+    return (
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-2xl font-bold">
+            No gameweeks found
+          </CardTitle>
+        </CardHeader>
+      </Card>
+    );
 
   return (
     <>
-      <div className="flex flex-row items-center pb-6">
+      <div className="flex flex-row items-center pb-8">
         <CalendarDaysIcon
-          className="mr-2.5 size-8 shrink-0"
+          className="mr-2.5 size-9 shrink-0"
           strokeWidth={2.5}
         />
         <h1 className="text-4xl font-bold">Gameweeks</h1>
       </div>
-      <div className="grid grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {gameweeks.map((gameweek) => {
-          const status = getGameweekStatus(gameweek);
+          const gameweekStatus = getGameweekStatus(gameweek);
           return (
-            <Card key={gameweek.id} className={`border ${status.border}`}>
+            <Card
+              key={gameweek.id}
+              className={`border ${gameweekStatus.cardClassName}`}
+            >
               <CardHeader>
                 <CardTitle className="inline-flex items-center gap-x-4 pb-1">
                   {gameweek.name}
-                  <Badge variant={status.variant}>{status.label}</Badge>
+                  <Badge variant={gameweekStatus.variant}>
+                    {gameweekStatus.label}
+                  </Badge>
                 </CardTitle>
-                <Separator />
-                <CardDescription className="pt-1">
-                  <strong>Deadline:</strong>{" "}
-                  {new Date(gameweek.deadline_time).toLocaleString()}{" "}
-                  {gameweek.is_next && (
-                    <span className="text-gray-500">
-                      (<DeadlineCounter deadline={gameweek.deadline_time} />)
-                    </span>
+                <CardDescription>
+                  {gameweekStatus.status === "next" && (
+                    <>
+                      <span className="font-light">Starts in</span>{" "}
+                      <DeadlineCounter
+                        className="font-medium"
+                        deadline={gameweek.deadline_time}
+                      />
+                    </>
                   )}
-                  {!gameweek.is_next &&
-                    status.daysUntilDeadline !== undefined && (
-                      <div className="mt-1 text-sm text-gray-500">
-                        {status.daysUntilDeadline} days until deadline
-                      </div>
-                    )}
+                  {gameweekStatus.status === "future" && (
+                    <>
+                      <span className="font-light">Starts in</span>{" "}
+                      {gameweekStatus.daysUntilDeadline} days
+                    </>
+                  )}
+                  {gameweekStatus.status === "current" && (
+                    <>
+                      <span className="font-light">Started on</span>{" "}
+                      {new Date(gameweek.deadline_time).toLocaleDateString()}
+                    </>
+                  )}
                 </CardDescription>
               </CardHeader>
-              <CardContent>
-                <CardDescription>
-                  {gameweek.finished ? "Finished" : "Not finished"}
-                </CardDescription>
-              </CardContent>
-              <CardFooter>
-                <div>View</div>
-              </CardFooter>
             </Card>
           );
         })}

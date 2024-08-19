@@ -2,7 +2,15 @@
 
 import { useEffect, useState } from "react";
 
-export default function DeadlineCounter({ deadline }: { deadline: string }) {
+import { cn } from "~/lib/utils";
+
+export default function DeadlineCounter({
+  className,
+  deadline,
+}: {
+  className?: string;
+  deadline: string;
+}) {
   const [timeLeft, setTimeLeft] = useState("");
 
   useEffect(() => {
@@ -29,5 +37,5 @@ export default function DeadlineCounter({ deadline }: { deadline: string }) {
     return () => clearInterval(interval);
   }, [deadline]);
 
-  return <span>{timeLeft}</span>;
+  return <span className={cn(className)}>{timeLeft}</span>;
 }

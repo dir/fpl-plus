@@ -23,6 +23,10 @@ export async function generateMetadata({
     getLeagueByIdOptions(leagueId),
   );
 
+  if (!league) {
+    return notFound();
+  }
+
   return {
     title: league.name,
   };
@@ -58,10 +62,6 @@ export default async function LeaguePage({
   entryPickQueryOptions.forEach((queryOption) => {
     void queryClient.prefetchQuery(queryOption);
   });
-
-  if (!league) {
-    return notFound();
-  }
 
   return (
     <div className="flex flex-col gap-y-6">

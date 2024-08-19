@@ -26,9 +26,18 @@ export const glowVariants = cva(
           "from-yellow-700 via-orange-400 to-red-900",
         ],
       },
+      blur: {
+        none: "",
+        xs: "blur-sm",
+        sm: "blur-md",
+        md: "blur-lg",
+        lg: "blur-xl",
+        xl: "blur-2xl",
+      },
     },
     defaultVariants: {
       color: "rainbow",
+      blur: "md",
     },
   },
 );
@@ -38,13 +47,14 @@ interface GlowProps extends VariantProps<typeof glowVariants> {
   className?: string;
 }
 
-export default function Glow({ children, color, className }: GlowProps) {
+export default function Glow({ children, color, blur, className }: GlowProps) {
   return (
-    <>
+    <div className="inline-flex">
       <span
         className={cn(
-          `absolute box-content select-none border blur-md ${glowVariants({
+          `absolute box-content select-none border ${glowVariants({
             color,
+            blur,
           })}`,
           className,
         )}
@@ -54,6 +64,7 @@ export default function Glow({ children, color, className }: GlowProps) {
       <h1
         className={cn(
           `relative top-0 flex h-auto select-auto ${glowVariants({
+            blur: "none",
             color,
           })}`,
           className,
@@ -61,6 +72,6 @@ export default function Glow({ children, color, className }: GlowProps) {
       >
         {children}
       </h1>
-    </>
+    </div>
   );
 }

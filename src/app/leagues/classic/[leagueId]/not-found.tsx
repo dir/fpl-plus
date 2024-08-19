@@ -16,7 +16,8 @@ export default function LeagueNotFound() {
             League Not Found <SearchXIcon className="ml-2 size-8 shrink-0" />
           </CardTitle>
           <div>
-            Requested ID: <pre className="font-bold">{params.leagueId}</pre>
+            Requested ID:{" "}
+            <code className="font-semibold">{params.leagueId}</code>
           </div>
         </CardHeader>
         <CardContent>
