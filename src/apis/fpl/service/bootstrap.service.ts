@@ -1,4 +1,4 @@
-import { Fixture } from "~/apis/fpl/types/fixtures.types";
+import { BootstrapStatic } from "~/apis/fpl/types/bootstrap.types";
 
 import { getBaseUrl } from "~/lib/utils";
 
@@ -8,6 +8,6 @@ export const fetchBootstrapStatic = () => async () =>
       "Content-Type": "application/json",
     },
     next: {
-      revalidate: 60,
+      revalidate: 3600,
     },
-  }).then((res) => res.json() as Promise<Fixture[]>);
+  }).then((res) => res.json() as Promise<BootstrapStatic>);
